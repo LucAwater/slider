@@ -1,8 +1,10 @@
 # Slider by [Luc Awater](https://github.com/LucAwater)
 
+Simple but powerful slider element. It includes a lightbox function, clickable bullets, swipe and more.
+
 ## Get started
 
-# Build
+### Build
 ```
 <div class="slider">
 
@@ -42,7 +44,7 @@
 </div>
 ```
 
-# Initialize
+### Initialize
 ```
 $( "div" ).slider({
   click: true,
