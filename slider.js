@@ -20,6 +20,9 @@
         var images = $this.find('.slider-images')
         var image = $this.find('.slider-images li')
 
+        var captions = $this.find('.slider-captions')
+        var caption = $this.find('.slider-captions li')
+
         var bullets = $this.find('.slider-bullets')
         var bullet = $this.find('.slider-bullets li')
 
@@ -27,12 +30,14 @@
         var next = $this.find('.slider-next')
         var prev = $this.find('.slider-prev')
 
-        // First image & bullet get first & active classes
+        // First image, bullet and caption get first & active classes
         image.first().addClass("first-image first is-active")
+        caption.first().addClass("first-caption first is-active")
         bullet.first().addClass("first-bullet first is-active")
 
-        // Last image & bullet get last class
+        // Last image, bullet and caption get last class
         image.last().addClass("last-image last")
+        caption.last().addClass("last-caption last")
         bullet.last().addClass("last-bullet last")
 
         // Next image if clicked on image
@@ -82,7 +87,7 @@
             target.addClass("is-active");
           });
         } else {
-          controls.hide();
+          controls.remove();
         }
 
         // Next and previous with keyboard
@@ -151,7 +156,8 @@
         if( settings.bullets === true ) {
           bullet.click(function() {
             var count = $(this).index() + 1;
-            var parent = $(this).parent().parent();
+            var parent = $(this).closest('slider');
+
             var current = parent.find('.is-active');
             var target = parent.find('.slider-images li:nth-child(' + count + ')');
             var target_bullet = parent.find('.slider-bullets li:nth-child(' + count + ')');
@@ -161,34 +167,34 @@
             target_bullet.addClass("is-active");
           });
 
-          // Hide bullets if there's only 1 image
+          // Hide bullets and controls if there's only 1 image
           if (image.length < 2) {
-            bullets.hide();
-            controls.hide();
+            bullets.remove();
+            controls.remove();
           } else {
             // Do nothing
           }
         } else {
-          bullets.hide();
+          bullets.remove();
         }
 
         // Lightbox functionality
         if( settings.lightbox === true ) {
+          var slider = $(this);
           var parent = $(this).closest('.slider')
+
           var open = parent.find('.lightbox-open');
           var close = parent.find('.lightbox-close');
-          var gallery = $(this);
 
           open.click(function() {
-            gallery.addClass("is-zoomed");
+            slider.addClass("is-zoomed");
 
             close.click(function() {
-              gallery.removeClass("is-zoomed");
+              slider.removeClass("is-zoomed");
 
-              var gallery_width = gallery.width();
+              var slider_width = slider.width();
 
-              gallery.css("height", gallery_width * 0.75);
-              $('#order').css("height", gallery_width * 0.75);
+              slider.css("height", slider_width * 0.75);
             });
           });
         }
