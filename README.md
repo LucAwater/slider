@@ -1,6 +1,6 @@
 # Slider by [Luc Awater](https://github.com/LucAwater)
 
-Simple but powerful slider element. It includes a lightbox function, clickable bullets, swipe and more.
+Clean and powerful slider element. It includes a lightbox function, clickable bullets, swipe and more.
 
 ## Get started
 
